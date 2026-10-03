@@ -1,0 +1,186 @@
+/* =====================================================================
+   style.css — how every page LOOKS: a classic school cafe
+   (chalkboard in a wooden frame, navy + school-bus yellow, cream paper, red gingham tablecloth)
+   Change the colours in :root to restyle the whole site. There is no logic in this file.
+   ===================================================================== */
+
+/* ---------- 1. Colours, fonts, sizes (CSS variables, used as var(--name)) ---------- */
+:root {
+  --navy: #1f3a5f;  --navy-dark: #152a46;  --chalk: #2f4a3f;  --wood: #8a5a2b;  --wood-dark: #5e3a17;
+  --cream: #f8f1e0; --paper: #fffdf7;      --line: #e6dcc3;   --bus: #f4b41a;   --bus-dark: #c48c0b;
+  --apple: #c8402f; --leaf: #2e7d4f;       --ink: #2a2a2a;    --muted: #6b6250;
+  --radius: 12px;   --shadow: 0 6px 18px rgba(31, 58, 95, .12);
+  --chalk-font: "Patrick Hand", "Chalkboard SE", "Comic Sans MS", cursive;   /* headings (chalk handwriting) */
+  --body-font: "Merriweather", Georgia, "Times New Roman", serif;            /* normal text */
+}
+
+/* ---------- 2. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }          /* width includes padding, so boxes never overflow */
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; min-height: 100vh; display: flex; flex-direction: column;   /* keeps the footer at the bottom */
+  font-family: var(--body-font); line-height: 1.55; color: var(--ink);
+  background-color: var(--cream);
+  background-image: linear-gradient(90deg, rgba(200, 64, 47, .07) 50%, transparent 50%),
+                    linear-gradient(rgba(200, 64, 47, .07) 50%, transparent 50%);   /* red gingham tablecloth */
+  background-size: 40px 40px;
+}
+main { flex: 1; }
+a { color: var(--navy); }
+h1, h2, h3 { font-family: var(--chalk-font); line-height: 1.2; font-weight: 400; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px; }
+.narrow { max-width: 500px; }
+.hidden { display: none !important; }                        /* JavaScript adds/removes this class to show/hide things */
+.muted { color: var(--muted); font-size: .92rem; }
+.center { text-align: center; }
+.section-title { font-size: 2.1rem; color: var(--navy); margin: 0 0 4px; }
+.section-sub { margin: 0 0 22px; color: var(--muted); }
+
+/* ---------- 3. Buttons (chunky "press down" school buttons) ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  font: inherit; font-weight: 700; font-size: .95rem; line-height: 1.1;
+  padding: 11px 18px; border: 0; border-radius: 10px; cursor: pointer; text-decoration: none;
+  background: var(--bus); color: var(--navy); box-shadow: 0 4px 0 var(--bus-dark);
+  transition: transform .12s, box-shadow .12s, background-color .12s;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--bus-dark); }
+.btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--bus-dark); }
+.btn-outline { background: transparent; color: inherit; box-shadow: inset 0 0 0 2px currentColor; }
+.btn-outline:hover, .btn-outline:active { background: rgba(255, 255, 255, .14); box-shadow: inset 0 0 0 2px currentColor; }
+.btn-small { padding: 7px 11px; font-size: .85rem; box-shadow: none; }
+.btn-small:hover, .btn-small:active { box-shadow: none; }
+.btn-small.btn-outline { box-shadow: inset 0 0 0 2px currentColor; }   /* FIX: keep the outline on small outline buttons (Sign out) */
+.btn-danger { background: #f6e0dc; color: var(--apple); }
+.btn-big { padding: 15px 30px; font-size: 1.1rem; }
+.btn-block { width: 100%; margin-top: 12px; }
+:focus-visible { outline: 3px solid var(--bus); outline-offset: 2px; }   /* clear outline for keyboard users */
+
+/* ---------- 4. Header + navigation (same on every page) ---------- */
+.site-header { position: sticky; top: 0; z-index: 20; background: var(--navy); color: #fff;
+               border-bottom: 5px solid var(--bus); box-shadow: 0 2px 12px rgba(0, 0, 0, .25); }
+.site-header .inner { max-width: 1100px; margin: 0 auto; padding: 10px 20px;
+                      display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.logo { font-family: var(--chalk-font); font-size: 1.7rem; color: #fff; text-decoration: none; white-space: nowrap; }
+.logo span { color: var(--bus); }
+.nav-links { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.nav-links a { color: #fff; text-decoration: none; padding: 8px 13px; border-radius: 8px; font-weight: 700; font-size: .95rem; }
+.nav-links a:hover { background: rgba(255, 255, 255, .12); }
+.nav-links a.active { background: var(--bus); color: var(--navy); }   /* the page you are on */
+.badge { display: inline-block; min-width: 22px; padding: 1px 7px; margin-left: 4px; border-radius: 99px;
+         background: var(--apple); color: #fff; font-size: .8rem; text-align: center; }
+.account { display: flex; align-items: center; gap: 10px; font-size: .9rem; }
+.account .who { white-space: nowrap; }
+
+/* ---------- 5. Chalkboard banners ---------- */
+.hero { max-width: 1060px; margin: 28px auto 0; padding: 56px 24px; text-align: center; color: #f5f5ee;
+        border: 14px solid var(--wood); border-radius: 14px;
+        background: radial-gradient(ellipse at 25% 15%, rgba(255, 255, 255, .10), transparent 55%), var(--chalk);
+        box-shadow: inset 0 0 50px rgba(0, 0, 0, .55), inset 0 0 0 3px var(--wood-dark), var(--shadow); }
+.hero h1 { font-size: clamp(2rem, 5vw, 3.3rem); margin: 0 0 10px; }
+.hero p { font-size: 1.1rem; margin: 0 auto 26px; max-width: 620px; opacity: .92; }
+.actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.page-banner { background: var(--chalk); color: #f5f5ee; text-align: center; padding: 34px 20px;
+               border-bottom: 8px solid var(--wood); box-shadow: inset 0 0 40px rgba(0, 0, 0, .5); }
+.page-banner h1 { margin: 0 0 4px; font-size: clamp(1.9rem, 4.5vw, 2.7rem); }
+.page-banner p { margin: 0; opacity: .88; }
+
+/* ---------- 6. Menu + deal cards ---------- */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 20px; }
+.card { display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--line);
+        border-top: 6px solid var(--navy); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow);
+        transition: transform .15s, box-shadow .15s; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 12px 26px rgba(31, 58, 95, .18); }
+.card .emoji { font-size: 2.8rem; line-height: 1; margin-bottom: 8px; }
+.card h3 { margin: 0 0 4px; font-size: 1.4rem; color: var(--navy); }
+.card .desc { margin: 0 0 12px; color: var(--muted); font-size: .9rem; flex: 1; }   /* flex:1 lines the buttons up */
+.row-between { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.price { font-weight: 800; font-size: 1.15rem; color: var(--apple); }
+.card.african { border-top-color: var(--leaf); }             /* green top edge for the African dishes */
+.card.sold-out { opacity: .78; }
+.tag { display: inline-block; padding: 2px 9px; border-radius: 99px; font-size: .72rem; font-weight: 700;
+       color: #fff; background: var(--leaf); }
+.tag.out { background: var(--apple); }
+.card.deal { border: 2px dashed var(--apple); background: linear-gradient(135deg, #fff6d6, var(--paper)); }   /* lunch ticket */
+
+/* Menu filter buttons + section headings */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.chip { font: inherit; font-weight: 700; font-size: .9rem; padding: 7px 15px; border-radius: 99px; cursor: pointer;
+        border: 2px solid var(--navy); background: var(--paper); color: var(--navy); }
+.chip:hover, .chip.active { background: var(--navy); color: #fff; }
+.cat-title { display: flex; align-items: center; gap: 12px; font-size: 1.8rem; color: var(--navy); margin: 30px 0 14px; }
+.cat-title::after { content: ""; flex: 1; height: 3px;                                         /* dashed wooden rule */
+                    background: repeating-linear-gradient(90deg, var(--wood) 0 10px, transparent 10px 16px); }
+
+/* Sticky cart bar at the bottom of the Menu page */
+.cart-bar { position: sticky; bottom: 0; z-index: 15; display: flex; justify-content: center; align-items: center;
+            gap: 16px; flex-wrap: wrap; padding: 12px 20px; background: var(--navy); color: #fff;
+            border-top: 4px solid var(--bus); box-shadow: 0 -4px 14px rgba(0, 0, 0, .2); }
+
+/* "How it works" boxes */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+.step { background: var(--paper); border: 2px dashed var(--navy); border-radius: var(--radius); padding: 20px; text-align: center; }
+.step b { display: block; font-family: var(--chalk-font); font-size: 2.3rem; font-weight: 400; color: var(--apple); }
+
+/* ---------- 7. Checkout page ---------- */
+.layout-2 { display: grid; grid-template-columns: 1.25fr 1fr; gap: 24px; align-items: start; }
+.panel { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+.panel h2 { margin: 0 0 14px; font-size: 1.7rem; color: var(--navy); padding-bottom: 6px; border-bottom: 3px double var(--line); }
+.line { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 10px; padding: 10px 6px; border-bottom: 1px dashed var(--line); }
+.line .name { font-weight: 700; }
+.line .sub { display: block; font-size: .85rem; font-weight: 400; color: var(--muted); }
+.line.bad { background: #fdecea; border-radius: 8px; }       /* the line that caused an error */
+.qty { display: flex; align-items: center; gap: 6px; }
+.totals { margin-top: 14px; }
+.totals div { display: flex; justify-content: space-between; padding: 4px 0; }
+.totals .grand { font-size: 1.25rem; font-weight: 800; color: var(--navy); border-top: 2px solid var(--ink); margin-top: 6px; padding-top: 8px; }
+.summary { background: #f6efdc; border-radius: 8px; padding: 10px 12px; font-size: .92rem; margin: 14px 0 0; }
+
+/* ---------- 8. Forms ---------- */
+label.field { display: block; font-weight: 700; font-size: .9rem; margin: 12px 0 4px; }
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], select {
+  width: 100%; font: inherit; font-size: 1rem; padding: 10px 12px; color: var(--ink);
+  border: 2px solid #cdbf9c; border-radius: 8px; background: #fff;
+}
+input:focus, select:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(244, 180, 26, .45); }
+.qty input[type="number"] { width: 58px; padding: 6px; text-align: center; }   /* after the rule above so it wins */
+select { width: auto; min-width: 230px; }
+.pay-option { display: flex; align-items: center; gap: 10px; padding: 12px 14px; margin-bottom: 10px; font-weight: 700;
+              border: 2px solid #cdbf9c; border-radius: 10px; background: #fff; cursor: pointer; }
+.pay-option:has(input:checked) { border-color: var(--navy); background: #eef3fa; }   /* highlight the chosen way to pay */
+.pay-option input { width: 18px; height: 18px; margin: 0; accent-color: var(--navy); }
+.row { display: flex; gap: 10px; }
+.row > * { flex: 1; min-width: 0; }
+
+/* Messages */
+.alert-error { background: #fdecea; border: 2px solid var(--apple); color: #7a1f14; border-radius: 10px; padding: 12px 14px; margin-top: 14px; }
+.form-error { color: #9b2a1c; font-size: .9rem; min-height: 1.3em; margin: 8px 0 0; }
+.note { background: #fff4cf; border: 2px solid var(--bus); border-radius: 10px; padding: 10px 12px; margin: 0 0 14px; }
+.note:empty { display: none; }
+.receipt { margin-top: 14px; background: #fff; border: 2px dashed var(--navy); border-radius: 10px; padding: 16px;
+           font-family: "Courier New", monospace; font-size: .92rem; line-height: 1.6; }
+
+/* Sign-in tabs */
+.tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 6px; margin-bottom: 18px; background: #efe6cf; border-radius: 12px; }
+.tab { font: inherit; font-weight: 700; padding: 10px 6px; border: 0; border-radius: 8px; background: transparent; color: var(--navy); cursor: pointer; }
+.tab.active { background: var(--navy); color: #fff; }
+
+/* ---------- 9. Footer + toast ---------- */
+.site-footer { margin-top: 40px; padding: 28px 20px; text-align: center; background: var(--navy-dark); color: #dfe6ef; border-top: 5px solid var(--bus); }
+.site-footer a { color: var(--bus); margin: 0 8px; text-decoration: none; font-weight: 700; }
+.site-footer p { margin: 6px 0; }
+.cart-bar + .site-footer { margin-top: 0; }   /* FIX: no gap between the Menu cart bar and the footer */
+.toast { position: fixed; left: 50%; bottom: 24px; z-index: 50; transform: translate(-50%, 140px);
+         padding: 12px 24px; border: 4px solid var(--wood); border-radius: 10px; background: var(--chalk); color: #fff;
+         font-family: var(--chalk-font); font-size: 1.15rem; opacity: 0; visibility: hidden;   /* FIX: fully hidden until needed */
+         transition: transform .3s, opacity .3s, visibility .3s; }
+.toast.show { transform: translate(-50%, 0); opacity: 1; visibility: visible; }
+
+/* ---------- 10. Phones and small screens ---------- */
+@media (max-width: 860px) { .layout-2 { grid-template-columns: 1fr; } }
+@media (max-width: 640px) {
+  .site-header { position: static; }          /* FIX: on phones the header scrolls away instead of covering the screen */
+  .site-header .inner { justify-content: center; }
+  .hero { margin: 16px 12px 0; border-width: 10px; padding: 40px 16px; }
+  select { min-width: 0; width: 100%; }
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- Sign in page. HTML = structure only. ALL JavaScript is in app.js; ALL styling is in style.css. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in · Blue Husky College Cafe</title>
+  <!-- Two free Google fonts (if you are offline, style.css falls back to normal fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐺</text></svg>">
+</head>
+<body data-page="login">   <!-- data-page tells app.js which page this is -->
+  <header class="site-header"><div class="inner">
+    <a class="logo" href="index.html">🐺 Blue Husky <span>Cafe</span></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="index.html" data-nav="home">Home</a>
+      <a href="menu.html" data-nav="menu">Menu</a>
+      <a href="deals.html" data-nav="deals">Deals</a>
+      <a href="checkout.html" data-nav="checkout">Checkout <span class="badge" id="cartCount">0</span></a>
+    </nav>
+    <div class="account" id="account"></div>   <!-- app.js puts "👤 Tom  [Sign out]" here -->
+  </div></header>
+
+  <main>
+    <div class="page-banner"><h1>🔑 Welcome to Blue Husky Cafe</h1><p>Sign in, create an account, or continue as a guest.</p></div>
+    <section class="wrap narrow"><div class="panel">
+      <p id="loginNote" class="note"></p>
+      <p id="loginStatus" class="muted"></p>
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab active" data-tab="signin">Sign in</button>
+        <button type="button" class="tab" data-tab="signup">Create account</button>
+        <button type="button" class="tab" data-tab="guest">Guest</button>
+      </div>
+      <div id="panel-signin"><form id="signinForm" novalidate>
+        <label class="field" for="siEmail">Email or username</label>
+        <input type="text" id="siEmail" placeholder="e.g. tom" autocomplete="username">
+        <label class="field" for="siPassword">Password</label>
+        <input type="password" id="siPassword" autocomplete="current-password">
+        <button type="submit" class="btn btn-block">Sign in</button>
+        <p id="siMsg" class="form-error" role="alert"></p>
+        <p class="muted">Demo account: <b>tom</b> / <b>husky123</b></p>
+      </form></div>
+      <div id="panel-signup" class="hidden"><form id="signupForm" novalidate>
+        <label class="field" for="suName">Your name</label>
+        <input type="text" id="suName" autocomplete="name">
+        <label class="field" for="suEmail">Email</label>
+        <input type="email" id="suEmail" autocomplete="email">
+        <label class="field" for="suPassword">Password (6+ characters)</label>
+        <input type="password" id="suPassword" autocomplete="new-password">
+        <label class="field" for="suConfirm">Confirm password</label>
+        <input type="password" id="suConfirm" autocomplete="new-password">
+        <button type="submit" class="btn btn-block">Create account</button>
+        <p id="suMsg" class="form-error" role="alert"></p>
+      </form></div>
+      <div id="panel-guest" class="hidden">
+        <p>No account needed. Order as a guest and pay by card or at the store.</p>
+        <button type="button" id="guestBtn" class="btn btn-block">Continue as guest</button>
+      </div>
+    </div></section>
+  </main>
+
+  <footer class="site-footer">
+    <p><a href="index.html">Home</a> · <a href="menu.html">Menu</a> · <a href="deals.html">Deals</a> · <a href="checkout.html">Checkout</a> · <a href="login.html">Account</a></p>
+    <p>Thank you for visiting Multicultural Café! Different cultures, delicious flavors, one table. 🐾</p>
+  </footer>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>   <!-- ALL the JavaScript -->
+</body>
+</html>

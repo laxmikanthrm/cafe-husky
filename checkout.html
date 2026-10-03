@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- Checkout page. HTML = structure only. ALL JavaScript is in app.js; ALL styling is in style.css. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout · Blue Husky College Cafe</title>
+  <!-- Two free Google fonts (if you are offline, style.css falls back to normal fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐺</text></svg>">
+</head>
+<body data-page="checkout">   <!-- data-page tells app.js which page this is -->
+  <header class="site-header"><div class="inner">
+    <a class="logo" href="index.html">🐺 Blue Husky <span>Cafe</span></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="index.html" data-nav="home">Home</a>
+      <a href="menu.html" data-nav="menu">Menu</a>
+      <a href="deals.html" data-nav="deals">Deals</a>
+      <a href="checkout.html" data-nav="checkout">Checkout <span class="badge" id="cartCount">0</span></a>
+    </nav>
+    <div class="account" id="account"></div>   <!-- app.js puts "👤 Tom  [Sign out]" here -->
+  </div></header>
+
+  <main>
+    <div class="page-banner"><h1>🛎️ Checkout</h1><p>Check your cart, choose how to pay, and place your order.</p></div>
+    <section class="wrap"><div class="layout-2">
+      <div class="panel">
+        <h2>Your Cart</h2>
+        <div id="cartList"></div>
+        <label class="field" for="discountSelect">Discount</label>
+        <select id="discountSelect"></select>
+        <div id="totalView" class="totals"></div>
+        <p class="summary"><b>Summary:</b> <span id="summaryView"></span></p>
+      </div>
+      <div class="panel">
+        <h2>Payment</h2>
+        <label class="pay-option"><input type="radio" name="pay" id="payCard" checked> 💳 Enter card</label>
+        <label class="pay-option"><input type="radio" name="pay" id="payStore"> 🏪 Pay at store</label>
+        <div id="cardFields">
+          <p class="muted">Demo only. Test card <b>4242 4242 4242 4242</b>, any future date, any CVC.</p>
+          <label class="field" for="cardNum">Card number</label>
+          <input type="text" id="cardNum" placeholder="1234 5678 9012 3456" inputmode="numeric" autocomplete="cc-number">
+          <div class="row">
+            <div><label class="field" for="cardExp">Expiry</label><input type="text" id="cardExp" placeholder="MM/YY" inputmode="numeric" autocomplete="cc-exp"></div>
+            <div><label class="field" for="cardCvc">CVC</label><input type="text" id="cardCvc" placeholder="123" inputmode="numeric" maxlength="4" autocomplete="cc-csc"></div>
+          </div>
+        </div>
+        <button id="placeBtn" class="btn btn-big btn-block">Place order</button>
+        <div id="errorBox" class="alert-error hidden" role="alert"></div>      <!-- role=alert: screen readers read errors aloud -->
+        <div id="receipt" class="receipt hidden" aria-live="polite"></div>
+      </div>
+    </div></section>
+  </main>
+
+  <footer class="site-footer">
+    <p><a href="index.html">Home</a> · <a href="menu.html">Menu</a> · <a href="deals.html">Deals</a> · <a href="checkout.html">Checkout</a> · <a href="login.html">Account</a></p>
+    <p>Thank you for visiting Multicultural Café! Different cultures, delicious flavors, one table. 🐾</p>
+  </footer>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>   <!-- ALL the JavaScript -->
+</body>
+</html>

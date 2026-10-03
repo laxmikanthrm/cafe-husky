@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- Home page. HTML = structure only. ALL JavaScript is in app.js; ALL styling is in style.css. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home · Blue Husky College Cafe</title>
+  <!-- Two free Google fonts (if you are offline, style.css falls back to normal fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐺</text></svg>">
+</head>
+<body data-page="home">   <!-- data-page tells app.js which page this is -->
+  <header class="site-header"><div class="inner">
+    <a class="logo" href="index.html">🐺 Blue Husky <span>Cafe</span></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="index.html" data-nav="home">Home</a>
+      <a href="menu.html" data-nav="menu">Menu</a>
+      <a href="deals.html" data-nav="deals">Deals</a>
+      <a href="checkout.html" data-nav="checkout">Checkout <span class="badge" id="cartCount">0</span></a>
+    </nav>
+    <div class="account" id="account"></div>   <!-- app.js puts "👤 Tom  [Sign out]" here -->
+  </div></header>
+
+  <main>
+    <section class="hero">
+      <h1>🌍 Taste the World in One Place!</h1>
+      <p>African, Indian, Italian and café favorites, cooked fresh for students and staff. Plus deals every day.</p>
+      <div class="actions"><a class="btn btn-big" href="menu.html">Order now</a><a class="btn btn-big btn-outline" href="deals.html">See today's deals</a></div>
+    </section>
+    <section class="wrap">
+      <h2 class="section-title">🌍 New: Taste of Africa</h2>
+      <p class="section-sub">Jollof rice, suya, doro wat and bobotie, plus bissap and puff-puff on the menu.</p>
+      <div id="africanList"></div>
+    </section>
+    <section class="wrap">
+      <h2 class="section-title">⭐ Student Favorites</h2>
+      <p class="section-sub">What everyone is ordering this week.</p>
+      <div id="featured"></div>
+      <p class="center"><a class="btn" href="menu.html">See the full menu →</a></p>
+    </section>
+    <section class="wrap">
+      <h2 class="section-title">How It Works</h2>
+      <div class="steps">
+        <div class="step"><b>1</b>Sign in, create an account, or continue as a guest</div>
+        <div class="step"><b>2</b>Add food to your cart and pick a deal</div>
+        <div class="step"><b>3</b>Pay by card or at the store, then collect</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p><a href="index.html">Home</a> · <a href="menu.html">Menu</a> · <a href="deals.html">Deals</a> · <a href="checkout.html">Checkout</a> · <a href="login.html">Account</a></p>
+    <p>Thank you for visiting Multicultural Café! Different cultures, delicious flavors, one table. 🐾</p>
+  </footer>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>   <!-- ALL the JavaScript -->
+</body>
+</html>

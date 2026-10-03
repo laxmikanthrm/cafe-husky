@@ -1,0 +1,7 @@
+{
+  "name": "blue-husky-cafe",
+  "version": "1.0.0",
+  "description": "One-page cafe: Strategy discounts, Observer cart, placeOrder contract, login portal, card or pay-at-store",
+  "scripts": { "test": "node --test" },
+  "license": "MIT"
+}
